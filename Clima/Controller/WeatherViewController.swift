@@ -26,13 +26,13 @@ class WeatherViewController: UIViewController {
         locationManager.delegate = self
         weatherManager.delegate = self
         
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         locationManager.requestLocation()
        
     }
     
     @IBAction func locationPressed(_ sender: UIButton) {
-        locationManager.requestLocation()
+        isPermissionGiven()
     }
     
     
@@ -52,6 +52,23 @@ class WeatherViewController: UIViewController {
         alertController.addAction(okAction)
 
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    func isPermissionGiven()  {
+       if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+                case .notDetermined, .restricted, .denied:
+                    print("No access")
+                    alertLocationPermission()
+                case .authorizedAlways, .authorizedWhenInUse:
+                    locationManager.requestLocation()
+                @unknown default:
+                break
+            }
+            } else {
+                print("Location services are not enabled")
+        }
     }
     
 }
