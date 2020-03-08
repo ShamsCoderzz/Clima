@@ -33,18 +33,6 @@ class WeatherViewController: UIViewController {
     
     @IBAction func locationPressed(_ sender: UIButton) {
         locationManager.requestLocation()
-//            if CLLocationManager.locationServicesEnabled() {
-//                switch CLLocationManager.authorizationStatus() {
-//                    case .notDetermined, .restricted, .denied:
-//                        alertLocationPermission()
-//                    case .authorizedAlways, .authorizedWhenInUse:
-//                        print("Access")
-//                    @unknown default:
-//                    break
-//                }
-//                } else {
-//                    alertLocationPermission()
-//            }
     }
     
     
